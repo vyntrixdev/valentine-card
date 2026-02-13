@@ -31,7 +31,7 @@ export default function DateDetails({ onClose }: Props) {
     { icon: "📍", title: "Location", text: "SM Mall of Asia" },
     { icon: "⛸", title: "Activity", text: "Ice Skating ✨" },
     { icon: "🍽", title: "Dinner", text: "To Be Announced 💌" },
-    { icon: "🎁", title: "Special Surprise", text: "To Be Announced 🌹" }
+    // { icon: "🎁", title: "Special Surprise", text: "To Be Announced 🌹" }
   ];
   
 
