@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import styles from "../styles/Password.module.css";
 
@@ -6,12 +6,36 @@ interface Props {
   onUnlock: () => void;
 }
 
+interface HeartData {
+  id: number;
+  left: number;
+  duration: number;
+  delay: number;
+  size: number;
+}
+
 export default function PasswordGate({ onUnlock }: Props) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [hearts, setHearts] = useState<HeartData[]>([]);
+
+  useEffect(() => {
+    // Generate hearts safely (no window usage during render)
+    const generatedHearts: HeartData[] = Array.from({ length: 15 }).map(
+      (_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        duration: 6 + Math.random() * 4,
+        delay: i * 0.4,
+        size: 16 + Math.random() * 20,
+      })
+    );
+
+    setHearts(generatedHearts);
+  }, []);
 
   const handleSubmit = () => {
-    if (password.toLowerCase() === "bebe") {
+    if (password.trim().toLowerCase() === "bebe") {
       setError(false);
       onUnlock();
     } else {
@@ -21,13 +45,38 @@ export default function PasswordGate({ onUnlock }: Props) {
 
   return (
     <div className={styles.wrapper}>
-      <FloatingHearts />
+      {/* Floating Hearts */}
+      <div className={styles.heartsContainer}>
+        {hearts.map((heart) => (
+          <motion.span
+            key={heart.id}
+            className={styles.heart}
+            style={{
+              left: `${heart.left}%`,
+              fontSize: heart.size,
+            }}
+            initial={{ opacity: 0, y: 80 }}
+            animate={{
+              opacity: [0, 0.7, 0],
+              y: -200,
+            }}
+            transition={{
+              duration: heart.duration,
+              repeat: Infinity,
+              delay: heart.delay,
+            }}
+          >
+            💗
+          </motion.span>
+        ))}
+      </div>
 
+      {/* Glass Card */}
       <motion.div
         className={styles.card}
-        initial={{ opacity: 0, scale: 0.9 }}
+        initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.8 }}
       >
         <h2 className={styles.title}>Enter Our Secret 💖</h2>
 
@@ -42,7 +91,7 @@ export default function PasswordGate({ onUnlock }: Props) {
 
           <motion.button
             onClick={handleSubmit}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.07 }}
             whileTap={{ scale: 0.95 }}
           >
             Unlock 💘
@@ -52,44 +101,14 @@ export default function PasswordGate({ onUnlock }: Props) {
         {error && (
           <motion.p
             className={styles.error}
-            initial={{ x: -10 }}
-            animate={{ x: 0 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
           >
-            Wrong secret 😢
+            Wrong secret 😢 Try again, love.
           </motion.p>
         )}
       </motion.div>
     </div>
-  );
-}
-
-/* Floating animated hearts */
-function FloatingHearts() {
-  return (
-    <>
-      {[...Array(15)].map((_, i) => (
-        <motion.span
-          key={i}
-          className={styles.heart}
-          initial={{
-            opacity: 0,
-            y: 50,
-            x: Math.random() * window.innerWidth,
-          }}
-          animate={{
-            opacity: [0, 0.5, 0],
-            y: -100,
-          }}
-          transition={{
-            duration: 6 + Math.random() * 4,
-            repeat: Infinity,
-            delay: i * 0.4,
-          }}
-        >
-          💗
-        </motion.span>
-      ))}
-    </>
   );
 }
