@@ -1,0 +1,228 @@
+/* ===================================
+   CINEMATIC ROMANTIC CARD
+=================================== */
+
+.card {
+  position: relative;
+  width: 620px;
+  max-width: 95%;
+  padding: 4rem 3.5rem;
+  border-radius: 40px;
+  text-align: center;
+
+  background: rgba(255, 248, 250, 0.95);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  border: 1px solid rgba(216, 112, 147, 0.25);
+
+  box-shadow:
+    0 40px 80px rgba(216, 112, 147, 0.18),
+    0 10px 20px rgba(0, 0, 0, 0.04);
+
+  overflow: visible;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.visualLayer {
+  position: relative;
+  overflow: hidden;
+  border-radius: 40px;
+}
+
+.buttonLayer {
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+/* Elegant hover lift */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 50px 100px rgba(216, 112, 147, 0.25);
+}
+
+/* Subtle glowing border */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 42px;
+  background: linear-gradient(
+    135deg,
+    rgba(216, 112, 147, 0.2),
+    rgba(255, 182, 193, 0.3)
+  );
+  z-index: -1;
+  filter: blur(20px);
+  opacity: 0.5;
+}
+
+/* ===============================
+   TOP SOFT LIGHT
+================================ */
+
+.topGlow {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  height: 160px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 192, 203, 0.35),
+    transparent 70%
+  );
+  filter: blur(40px);
+}
+
+/* ===============================
+   DIVIDER
+================================ */
+
+.divider {
+  height: 3px;
+  width: 80px;
+  margin: 1.5rem auto 2.5rem auto;
+  border-radius: 20px;
+  background: linear-gradient(
+    90deg,
+    #d87093,
+    #c94f7c
+  );
+}
+
+/* ===============================
+   NAME SECTION
+================================ */
+
+.nameWrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.8rem;
+  cursor: pointer;
+}
+
+/* Golden shimmer */
+.shimmer {
+  position: absolute;
+  top: 0;
+  left: -200%;
+  width: 300%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 220, 170, 0.35),
+    transparent
+  );
+  animation: shimmerMove 8s ease-in-out infinite;
+}
+
+@keyframes shimmerMove {
+  0% { left: -200%; }
+  100% { left: 200%; }
+}
+
+/* Main name */
+.nameText {
+  font-size: 3.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  background: linear-gradient(
+    90deg,
+    #d87093,
+    #c94f7c,
+    #d87093
+  );
+  background-size: 200% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: gradientMove 10s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* From text */
+.fromText {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  color: #a35c75;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ===============================
+   FLOATING HEARTS
+================================ */
+
+.heart {
+  position: absolute;
+  font-size: 16px;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+/* More natural positioning */
+.heart:nth-child(3) { top: -20px; left: 15%; }
+.heart:nth-child(4) { top: 25px; right: -15px; }
+.heart:nth-child(5) { bottom: -15px; left: 45%; }
+.heart:nth-child(6) { top: -25px; right: 35%; }
+.heart:nth-child(7) { bottom: 5px; right: -20px; }
+.heart:nth-child(8) { top: 15px; left: -20px; }
+.heart:nth-child(9) { bottom: -25px; left: 25%; }
+.heart:nth-child(10) { top: 5px; right: 55%; }
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+  .card {
+    padding: 3rem 2.2rem;
+  }
+
+  .nameText {
+    font-size: 2.4rem;
+  }
+
+  .fromText {
+    font-size: 0.9rem;
+  }
+}
+
+.valentineText {
+  font-size: 1.3rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+
+  background: linear-gradient(
+    90deg,
+    #d87093,
+    #c94f7c
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  font-weight: 500;
+
+  animation: softGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes softGlow {
+  from {
+    text-shadow: 0 0 8px rgba(216, 112, 147, 0.2);
+  }
+  to {
+    text-shadow: 0 0 18px rgba(216, 112, 147, 0.4);
+  }
+}

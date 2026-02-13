@@ -1,0 +1,177 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 0, 20, 0.6);
+  backdrop-filter: blur(12px);
+  z-index: 50;
+}
+
+.panel {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-height: 95vh;
+
+  background: rgba(255, 248, 250, 0.97);
+  backdrop-filter: blur(25px);
+
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px;
+
+  padding: 4rem 3rem;
+  overflow-y: auto;
+  text-align: center;
+
+  box-shadow: 0 -30px 80px rgba(216, 112, 147, 0.25);
+  z-index: 100;
+}
+
+.softGlow {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 182, 193, 0.35),
+    transparent 70%
+  );
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+  font-size: 2.4rem;
+  color: #5a2d3d;
+}
+
+/* Two Column Layout */
+.contentLayout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.leftSide {
+  display: flex;
+  flex-direction: column;
+}
+
+.rightSide {
+  display: flex;
+  justify-content: center;
+}
+
+/* Details Grid */
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 1.8rem;
+}
+
+/* Card */
+.detailCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+
+  padding: 1.2rem 1.5rem;
+  border-radius: 24px;
+
+  background: rgba(255, 235, 240, 0.85);
+  backdrop-filter: blur(15px);
+
+  border: 1px solid rgba(216, 112, 147, 0.25);
+  box-shadow: 0 15px 35px rgba(216, 112, 147, 0.15);
+
+  transition: 0.3s ease;
+}
+
+.detailCard:hover {
+  transform: translateY(-4px);
+}
+
+.iconCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #d87093, #c94f7c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.detailCard h4 {
+  margin: 0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #a35c75;
+}
+
+.detailCard p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.message {
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* Particles */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ffc0cb;
+  border-radius: 50%;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Close Button */
+.closeBtn {
+  margin-top: 3rem;
+  padding: 1rem 3rem;
+  border-radius: 40px;
+  border: none;
+  background: linear-gradient(90deg, #d87093, #c94f7c);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 15px 35px rgba(216, 112, 147, 0.35);
+  transition: 0.3s ease;
+}
+
+.closeBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 45px rgba(216, 112, 147, 0.45);
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .detailsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 950px) {
+  .contentLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .rightSide {
+    margin-top: 3rem;
+  }
+}

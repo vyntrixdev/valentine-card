@@ -1,0 +1,13 @@
+.container {
+  min-height: 100vh;
+  background: 
+    linear-gradient(rgba(255, 105, 180, 0.4), rgba(255, 20, 147, 0.6)),
+    url("/tulip-heart.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
