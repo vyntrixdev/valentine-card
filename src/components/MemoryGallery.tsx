@@ -63,7 +63,7 @@ export default function MemoryGallery() {
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.7}
-            onDragEnd={(e, { offset }) => {
+            onDragEnd={(_, { offset }) => {
               if (offset.x > 120) paginate(-1);
               if (offset.x < -120) paginate(1);
             }}

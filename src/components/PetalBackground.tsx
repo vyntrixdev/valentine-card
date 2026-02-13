@@ -13,9 +13,8 @@ interface PetalData {
 
 export default function PetalBackground() {
   const [petals, setPetals] = useState<PetalData[]>([]);
-
   useEffect(() => {
-    const generated = Array.from({ length: 45 }).map((_, i) => ({
+    const generated: PetalData[] = Array.from({ length: 45 }).map((_, i) => ({
       id: i,
       x: Math.random() * window.innerWidth,
       duration: 12 + Math.random() * 10,
